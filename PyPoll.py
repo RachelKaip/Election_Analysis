@@ -43,6 +43,17 @@ with open(file_to_load) as election_data:
             #start tracking the candidate's vote count, setting each cand's votes to 0 
             candidate_votes[candidate_name] = 0 
         candidate_votes[candidate_name] += 1
+
+#save results to text file
+with open(file_to_save,"w") as txt_file:
+    election_results= (
+         f"\nElection Results\n"
+        f"------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"------------------------\n")
+    print(election_results, end="")
+    txt_file.write(election_results)
+
 #iterate through the candidate votes  
 for candidate_name in candidate_votes:
     #get the votes for each candidate
@@ -50,7 +61,12 @@ for candidate_name in candidate_votes:
     #calc percent of votes
     vote_percentage = float(votes)/float(total_votes)*100
     #print candidate name and percentage of votes
-    print(f"{candidate_name}: received {vote_percentage}% of the vote.")
+    #print(f"{candidate_name}: received {vote_percentage}% of the vote.")
+
+    candidate_results= (
+        f"{candidate_name} : {vote_percentage:.1f}% ({votes:,})\n")
+    print(candidate_results)
+    txt_file.write(candidate_results)
 
     #determine the winner based on vote count and %
     if (votes > winning_count) and (vote_percentage > winning_percentage):
@@ -59,7 +75,7 @@ for candidate_name in candidate_votes:
         winning_candidate= candidate_name
 
     #to do: print cand's names, vote counts, and % votes 
-    print(f"{candidate_name} : {vote_percentage:.1f}% ({votes:,})\n")
+    #print(f"{candidate_name} : {vote_percentage:.1f}% ({votes:,})\n")
 winning_candidate_summary = (
     f"-------------------------------\n"
     f"Winner: {winning_candidate}\n"
@@ -67,6 +83,7 @@ winning_candidate_summary = (
     f"Winning Percentage: {winning_percentage:.1f}%\n")
 
 print(winning_candidate_summary)
+txt_file.write(winning_candidate_summary)
 
 
 
