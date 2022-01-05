@@ -27,4 +27,7 @@ Software: Python 3.7.6, Visual Studio Code
     - Won 3.1% of the vote
     - 11,606 votes
 
+## Results 
+Diane DeGette by winning 73.8% with 272,892 votes out of 369,711 total votes!
+
 
